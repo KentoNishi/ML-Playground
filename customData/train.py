@@ -2,11 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import cv2
-from keras.datasets import cifar10
-from keras.preprocessing.image import ImageDataGenerator
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPooling2D
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras.models import load_model
 from tqdm import tqdm
 import random
 
@@ -35,3 +37,6 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 model.fit(X, Y, batch_size=32, epochs=3, validation_split=0.3)
+
+model.save('model.h5')
+del model
